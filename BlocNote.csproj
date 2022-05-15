@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+	<ItemGroup>
+        <Content Include="pictures\**" CopyToPublishDirectory="PreserveNewest" />
+        <Content Include="fonts\**" />
+	</ItemGroup>
+
+	
+	<ItemGroup>
+	  <None Remove="blocnotes.png" />
+	  <None Remove="cross.png" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+	  <Resource Include="pictures/blocnotes.png" />
+	  <Resource Include="pictures/cross.png" />
+	</ItemGroup>
+
+</Project>
