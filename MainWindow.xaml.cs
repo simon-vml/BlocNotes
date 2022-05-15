@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
 
 namespace BlocNote
 {
@@ -52,7 +53,13 @@ namespace BlocNote
 
         private void MenuItemEnregistrer_OnClick(object sender, RoutedEventArgs e)
         {
-            fichier.Save();
+            TextRange textRange = new(richTextBox.Document.ContentStart, richTextBox.Document.ContentEnd);
+            fichier.Save(textRange);
+        }
+
+        private void MenuItemFermer_OnClick(object sender, RoutedEventArgs e)
+        {
+            fichier.Close(richTextBox);
         }
     }
 }

@@ -41,6 +41,7 @@
                     <MenuItem x:Name="menuItemOuvrir" Header="Ouvrir" InputGestureText="Ctrl+O" Foreground="Black"/>
                     <MenuItem x:Name="menuItemEnregistrer" Header="Enregistrer" InputGestureText="Ctrl+S" Foreground="Black" Click="MenuItemEnregistrer_OnClick"/>
                     <MenuItem x:Name="menuItemEnregistrerSous" Header="Enregistrer sous..." InputGestureText="Ctrl+Maj+S" Foreground="Black"/>
+                    <MenuItem x:Name="menuItemFermer" Header="Fermer" Foreground="Black" Click="MenuItemFermer_OnClick"/>
                     <Separator/>
                     <MenuItem x:Name="menuItemQuitter" Header="Quitter" InputGestureText="Alt+F4" Foreground="Black" Click="MenuItemQuitter_OnClick"/>
                 </MenuItem>
