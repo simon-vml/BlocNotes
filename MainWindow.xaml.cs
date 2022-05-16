@@ -23,6 +23,8 @@ namespace BlocNote
     public partial class MainWindow : Window
     {
         private Fichier fichier = new Fichier();
+
+        private bool _isFullScreen = false;
         
 
         public MainWindow()
@@ -73,6 +75,11 @@ namespace BlocNote
             if (e.ChangedButton == MouseButton.Left)
             {
                 DragMove();
+            }
+
+            if (e.ClickCount == 2)
+            {
+                fullScreen_MouseUp(sender, e);
             }
         }
 
@@ -182,6 +189,23 @@ namespace BlocNote
             {
                 MenuItemEnregistrer_OnClick(sender, aaaaa);
             }
+        }
+
+        private void fullScreen_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            if (!_isFullScreen)
+            {
+                WindowState = WindowState.Maximized;
+                _isFullScreen = true;
+                return;
+            }
+            WindowState = WindowState.Normal;
+            _isFullScreen = false;
+        }
+
+        private void minimize_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
         }
     }
 }

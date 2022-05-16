@@ -27,14 +27,14 @@
 
         <Border Grid.Row="0" CornerRadius="15,15,0,0" MouseDown="BougerFenetre_OnMouseDown" Background="#262626">
             <Grid x:Name="gridRow0">
-                <Image Grid.Row="0" Grid.Column="0" Source="/blocnotes.png" Height="23" Margin="14,4,0,3" MinWidth="20" HorizontalAlignment="Left" Width="24"/>
-                <Label x:Name="windowTitle" Grid.Row="0" Content="*Sans titre - Bloc-notes" Foreground="White" VerticalContentAlignment="Center" FontFamily="Borg9" Margin="42,0,19,0"/>
+                <Image Grid.Row="0" Grid.Column="0" Source="/blocnotes.png" Height="23" Margin="20,7,0,0" MinWidth="20" HorizontalAlignment="Left" Width="23"/>
+                <Label x:Name="windowTitle" Grid.Row="0" Content="*Sans titre - Bloc-notes" Foreground="White" VerticalContentAlignment="Center" FontFamily="Borg9" Margin="54,5,0,-5" HorizontalAlignment="Left" Width="727"/>
             </Grid>
         </Border>
 
 
         <Grid x:Name="gridRow1" Background="#262626" Grid.Row="1">
-            <Menu Opacity="1" BorderBrush="Transparent" Foreground="White" Background="#262626" FontFamily="Borg9">
+            <Menu Opacity="1" BorderBrush="Transparent" Foreground="White" Background="#262626" FontFamily="Borg9" Margin="10,0,0,0" HorizontalAlignment="Left" Width="790">
                 <MenuItem x:Name="menuItemFichier" Header="Fichier" Width="60" Height="25">
                     <MenuItem x:Name="menuItemNouveau" Header="Nouveau" Foreground="Black" Click="MenuItemNouveau_OnClick"/>
                     <MenuItem x:Name="menuItemNouvelleFenetre" Header="Nouvelle fenêtre" Foreground="Black" Click="menuItemNouvelleFenetre_Click"/>
@@ -74,6 +74,8 @@
         </Border>
 
         <Image x:Name="closeWindow" Height="42" Margin="0,0,7,0" VerticalAlignment="Center" Source="/cross.png" Grid.RowSpan="2" MouseUp="closeWindow_MouseUp" Cursor="Hand" HorizontalAlignment="Right" Width="42"/>
+        <Image x:Name="fullScreen" Height="30" Margin="0,0,60,0" Grid.RowSpan="2" VerticalAlignment="Center" Source="/square.png" MouseUp="fullScreen_MouseUp" Cursor="Hand" HorizontalAlignment="Right" Width="30"/>
+        <Image x:Name="minimize" Height="42" Margin="0,0,99,0" Grid.RowSpan="2" VerticalAlignment="Center" Source="/horizontal.png" Cursor="Hand" MouseUp="minimize_MouseUp" HorizontalAlignment="Right" Width="42"/>
 
     </Grid>
 
