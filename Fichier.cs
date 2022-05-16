@@ -28,6 +28,13 @@ namespace BlocNote
             set { _texte = value; }
         }
 
+        private Label _labell;
+        public Label Labell
+        {
+            get { return _labell; }
+            set { _labell = value; }
+        }
+
 
         public Fichier() { }
         public Fichier(string chemin)
@@ -44,28 +51,41 @@ namespace BlocNote
                 {
                     Filter = "Text file (*.txt)|*.txt",
                     //InitialDirectory = @"D:\Documents\Bloc notes"
-                    //InitialDirectory = @"D:\Bureau"
+                    InitialDirectory = @"D:\Bureau"
                 };
                 if (saveFileDialog.ShowDialog() == true)
                 {
                     Chemin = saveFileDialog.FileName;
+                    textRange.Text = textRange.Text.Remove(textRange.Text.Length - 1);
+                    textRange.Text = textRange.Text.Remove(textRange.Text.Length - 1);
                     File.WriteAllText(Chemin, textRange.Text);
+                    Labell.Content = $"{saveFileDialog.SafeFileName} - Bloc-notes";
                 }
             }
             else
             {
-                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                textRange.Text = textRange.Text.Remove(textRange.Text.Length - 1);
+                textRange.Text = textRange.Text.Remove(textRange.Text.Length - 1);
                 File.WriteAllText(Chemin, textRange.Text);
+                string newLabel = Labell.Content.ToString().Remove(0, 1);
+                Labell.Content = newLabel;
             }
             Texte = textRange.Text;
         }
 
 
         // fonction a refaire avec une fenêtre personnalisée plutôt qu'une MessageBox
-        public void Close(RichTextBox richTextBox)
+        public void Nouveau(RichTextBox richTextBox)
         {
             TextRange textRange = new(richTextBox.Document.ContentStart, richTextBox.Document.ContentEnd);
-            if (Chemin == "" && textRange.Text.Length == 2)
+            // retire les deux derniers char de textRange.Text car retour à la ligne à enlever
+            if (!textRange.IsEmpty)
+            {
+                textRange.Text = textRange.Text.Remove(textRange.Text.Length - 1);
+                textRange.Text = textRange.Text.Remove(textRange.Text.Length - 1);
+            }
+            
+            if (Chemin == "" && textRange.IsEmpty)
             {
                 return;
             }
@@ -80,12 +100,14 @@ namespace BlocNote
                     Save(textRange);
                     Chemin = "";
                     richTextBox.Document.Blocks.Clear();
+                    Labell.Content = "*Sans titre - Bloc-notes";
                 }
                 // si result == non => ne save pas, clear Chemin et vide la richTextBox
                 else if (result == MessageBoxResult.No)
                 {
                     Chemin = "";
                     richTextBox.Document.Blocks.Clear();
+                    Labell.Content = "*Sans titre - Bloc-notes";
                 }
             }
             // si le texte == le dernier texte enregistré => clear Chemin et vide la richTextBox
@@ -93,21 +115,22 @@ namespace BlocNote
             {
                 Chemin = "";
                 richTextBox.Document.Blocks.Clear();
+                Labell.Content = "*Sans titre - Bloc-notes";
             }
         }
-
+            
 
         public void Open(RichTextBox richTextBox, Label labelTitre)
         {
             TextRange textRange = new(richTextBox.Document.ContentStart, richTextBox.Document.ContentEnd);
-            if (Chemin != "" || textRange.Text.Length != 2)
+            if (Chemin != "" || !textRange.IsEmpty)
             {
-                Close(richTextBox);
+                Nouveau(richTextBox);
             }
 
             OpenFileDialog openFileDialog = new()
             {
-                InitialDirectory = @"C:\Users\simon\OneDrive - Haute Ecole en Hainaut\Documents",
+                InitialDirectory = @"D:\Bureau",
                 Filter = "Text file (*.txt)|*.txt"
             };
 
@@ -115,6 +138,10 @@ namespace BlocNote
             {
                 var sr = new StreamReader(openFileDialog.FileName);
                 richTextBox.Document.Blocks.Add(new Paragraph(new Run(sr.ReadToEnd())));
+                Chemin = openFileDialog.FileName;
+                Labell.Content = $"{openFileDialog.SafeFileName} - Bloc-notes";
+
+                // enlever retour à la ligne quand on ouvre un fichier au démarage
             }
         }
     }

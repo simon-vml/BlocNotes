@@ -28,7 +28,7 @@
         <Border Grid.Row="0" CornerRadius="15,15,0,0" MouseDown="BougerFenetre_OnMouseDown" Background="#262626">
             <Grid x:Name="gridRow0">
                 <Image Grid.Row="0" Grid.Column="0" Source="/blocnotes.png" Height="23" Margin="14,4,0,3" MinWidth="20" HorizontalAlignment="Left" Width="24"/>
-                <Label x:Name="windowTitle" Grid.Row="0" Content="Bloc-notes" Foreground="White" VerticalContentAlignment="Center" FontFamily="Borg9" Margin="42,0,19,0"/>
+                <Label x:Name="windowTitle" Grid.Row="0" Content="*Sans titre - Bloc-notes" Foreground="White" VerticalContentAlignment="Center" FontFamily="Borg9" Margin="42,0,19,0"/>
             </Grid>
         </Border>
 
@@ -64,7 +64,7 @@
 
         <Border Grid.Row="2" Background="#383838" CornerRadius="0,0,5,5">
             <Grid x:Name="gridRow2">
-                <RichTextBox x:Name="richTextBox" Background="Transparent" BorderBrush="Transparent" Foreground="White" Margin="10,10,10,10" BorderThickness="0" CaretBrush="White" FontFamily="Borg9">
+                <RichTextBox x:Name="richTextBox" Background="Transparent" BorderBrush="Transparent" Foreground="White" Margin="10,10,10,10" BorderThickness="0" CaretBrush="White" FontFamily="Borg9" TextChanged="richTextBox_TextChanged">
                     <FlowDocument>
                         <Paragraph BorderBrush="Transparent" LineHeight="10">
                             <Run Text=""/>

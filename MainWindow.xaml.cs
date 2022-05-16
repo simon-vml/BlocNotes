@@ -28,6 +28,7 @@ namespace BlocNote
         public MainWindow()
         {
             InitializeComponent();
+            fichier.Labell = windowTitle;
         }
         
 
@@ -61,7 +62,7 @@ namespace BlocNote
 
         private void MenuItemNouveau_OnClick(object sender, RoutedEventArgs e)
         {
-            fichier.Close(richTextBox);
+            fichier.Nouveau(richTextBox);
         }
 
 
@@ -81,6 +82,14 @@ namespace BlocNote
         private void menuItemOuvrir_Click(object sender, RoutedEventArgs e)
         {
             fichier.Open(richTextBox, windowTitle);
+        }
+
+        private void richTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (windowTitle.Content.ToString()[0] != '*')
+            {
+                windowTitle.Content = $"*{windowTitle.Content}";
+            }
         }
     }
 }
