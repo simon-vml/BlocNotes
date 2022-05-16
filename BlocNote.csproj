@@ -7,6 +7,7 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+	
 	<ItemGroup>
         <Content Include="pictures\**" CopyToPublishDirectory="PreserveNewest" />
         <Content Include="fonts\**" />
@@ -27,5 +28,6 @@
 	  <Resource Include="pictures/cross.png" />
 	  <Resource Include="warning.png" />
 	</ItemGroup>
+
 
 </Project>

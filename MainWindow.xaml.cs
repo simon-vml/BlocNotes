@@ -34,6 +34,7 @@ namespace BlocNote
 
         private void closeWindow_MouseUp(object sender, MouseButtonEventArgs e)
         {
+            fichier.Nouveau(richTextBox);
             Close();
         }
 
@@ -49,6 +50,7 @@ namespace BlocNote
 
         private void MenuItemQuitter_OnClick(object sender, RoutedEventArgs e)
         {
+            fichier.Nouveau(richTextBox);
             Close();
         }
 
