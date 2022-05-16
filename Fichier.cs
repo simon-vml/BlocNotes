@@ -27,12 +27,13 @@ namespace BlocNote
             set { _texte = value; }
         }
 
-        public Fichier() { }
 
+        public Fichier() { }
         public Fichier(string chemin)
         {
             Chemin = chemin;
         }
+
 
         public void Save(TextRange textRange)
         {
@@ -58,6 +59,8 @@ namespace BlocNote
             Texte = textRange.Text;
         }
 
+
+        // fonction a refaire avec une fenêtre personnalisée plutôt qu'une MessageBox
         public void Close(RichTextBox richTextBox)
         {
             TextRange textRange = new(richTextBox.Document.ContentStart, richTextBox.Document.ContentEnd);

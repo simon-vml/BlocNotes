@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,15 +24,18 @@ namespace BlocNote
     {
         private Fichier fichier = new Fichier();
         
+
         public MainWindow()
         {
             InitializeComponent();
         }
         
+
         private void closeWindow_MouseUp(object sender, MouseButtonEventArgs e)
         {
             Close();
         }
+
 
         private void BougerFenetre_OnMouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -40,6 +44,7 @@ namespace BlocNote
                 DragMove();
             }
         }
+
 
         private void MenuItemQuitter_OnClick(object sender, RoutedEventArgs e)
         {
@@ -53,9 +58,24 @@ namespace BlocNote
             fichier.Save(textRange);
         }
 
+
         private void MenuItemFermer_OnClick(object sender, RoutedEventArgs e)
         {
             fichier.Close(richTextBox);
+        }
+
+
+        private void menuItemSelectTout_Click(object sender, RoutedEventArgs e)
+        {
+            richTextBox.SelectAll();
+        }
+
+
+        private void menuItemNouvelleFenetre_Click(object sender, RoutedEventArgs e)
+        {
+            ProcessStartInfo pInfo = new ProcessStartInfo("BlocNote.exe");
+            pInfo.WorkingDirectory = @"C:\Users\Simon\source\repos\simon-vml\BlocNotes\bin\Debug\net6.0-windows";
+            Process p = Process.Start(pInfo);
         }
     }
 }

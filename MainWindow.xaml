@@ -37,7 +37,7 @@
             <Menu Opacity="1" BorderBrush="Transparent" Foreground="White" Background="#262626" FontFamily="Borg9">
                 <MenuItem x:Name="menuItemFichier" Header="Fichier" Width="60" Height="25">
                     <MenuItem x:Name="menuItemNouveau" Header="Nouveau" InputGestureText="Ctrl+N" Foreground="Black"/>
-                    <MenuItem x:Name="menuItemNouvelleFenetre" Header="Nouvelle fenêtre" InputGestureText="Ctrl+Maj+N" Foreground="Black"/>
+                    <MenuItem x:Name="menuItemNouvelleFenetre" Header="Nouvelle fenêtre" InputGestureText="Ctrl+Maj+N" Foreground="Black" Click="menuItemNouvelleFenetre_Click"/>
                     <MenuItem x:Name="menuItemOuvrir" Header="Ouvrir" InputGestureText="Ctrl+O" Foreground="Black"/>
                     <MenuItem x:Name="menuItemEnregistrer" Header="Enregistrer" InputGestureText="Ctrl+S" Foreground="Black" Click="MenuItemEnregistrer_OnClick"/>
                     <MenuItem x:Name="menuItemEnregistrerSous" Header="Enregistrer sous..." InputGestureText="Ctrl+Maj+S" Foreground="Black"/>
@@ -55,7 +55,7 @@
                     <Separator/>
                     <MenuItem x:Name="menuItemRechercher" Header="Rechercher" InputGestureText="Ctrl+F" Foreground="Black"/>
                     <Separator/>
-                    <MenuItem x:Name="menuItemSelectTout" Header="Sélectionner tout" InputGestureText="Ctrl+A" Foreground="Black"/>
+                    <MenuItem x:Name="menuItemSelectTout" Header="Sélectionner tout" InputGestureText="Ctrl+A" Foreground="Black" Click="menuItemSelectTout_Click"/>
                     <MenuItem x:Name="menuItemHeureDate" Header="Heure/Date" InputGestureText="F5" Foreground="Black"/>
                 </MenuItem>
                 <MenuItem x:Name="menuItemFormat" Header="Format" Width="60" Height="25"/>
