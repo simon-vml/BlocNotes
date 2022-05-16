@@ -100,5 +100,13 @@ namespace BlocNote
             TextRange textRange = new(richTextBox.Document.ContentStart, richTextBox.Document.ContentEnd);
             fichier.SaveSous(textRange);
         }
+
+
+        private void menuItemHeureDate_Click(object sender, RoutedEventArgs e)
+        {
+            string heuresMinutes = DateTime.Now.ToString("HH:mm");
+            string date = DateTime.Now.ToString("d");
+            richTextBox.AppendText($"{heuresMinutes} {date}");
+        }
     }
 }

@@ -55,7 +55,7 @@
                     <MenuItem x:Name="menuItemRechercher" Header="Rechercher" InputGestureText="Ctrl+F" Foreground="Black"/>
                     <Separator/>
                     <MenuItem x:Name="menuItemSelectTout" Header="Sélectionner tout" InputGestureText="Ctrl+A" Foreground="Black" Click="menuItemSelectTout_Click"/>
-                    <MenuItem x:Name="menuItemHeureDate" Header="Heure/Date" InputGestureText="F5" Foreground="Black"/>
+                    <MenuItem x:Name="menuItemHeureDate" Header="Heure/Date" InputGestureText="F5" Foreground="Black" Click="menuItemHeureDate_Click"/>
                 </MenuItem>
                 <MenuItem x:Name="menuItemFormat" Header="Format" Width="60" Height="25"/>
             </Menu>
