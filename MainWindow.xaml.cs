@@ -106,7 +106,21 @@ namespace BlocNote
         {
             string heuresMinutes = DateTime.Now.ToString("HH:mm");
             string date = DateTime.Now.ToString("d");
-            richTextBox.AppendText($"{heuresMinutes} {date}");
+            richTextBox.CaretPosition.InsertTextInRun($"{heuresMinutes} {date}");
+        }
+
+
+        private void richTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            RoutedEventArgs aaaaa = new();
+            if (e.Key == Key.F5)
+            {
+                menuItemHeureDate_Click(sender, aaaaa);
+            }
+            else if (e.Key == Key.S && Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                MenuItemEnregistrer_OnClick(sender, aaaaa);
+            }
         }
     }
 }

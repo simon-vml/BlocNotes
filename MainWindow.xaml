@@ -36,26 +36,23 @@
         <Grid x:Name="gridRow1" Background="#262626" Grid.Row="1">
             <Menu Opacity="1" BorderBrush="Transparent" Foreground="White" Background="#262626" FontFamily="Borg9">
                 <MenuItem x:Name="menuItemFichier" Header="Fichier" Width="60" Height="25">
-                    <MenuItem x:Name="menuItemNouveau" Header="Nouveau" InputGestureText="Ctrl+N" Foreground="Black" Click="MenuItemNouveau_OnClick"/>
-                    <MenuItem x:Name="menuItemNouvelleFenetre" Header="Nouvelle fenêtre" InputGestureText="Ctrl+Maj+N" Foreground="Black" Click="menuItemNouvelleFenetre_Click"/>
-                    <MenuItem x:Name="menuItemOuvrir" Header="Ouvrir" InputGestureText="Ctrl+O" Foreground="Black" Click="menuItemOuvrir_Click"/>
+                    <MenuItem x:Name="menuItemNouveau" Header="Nouveau" Foreground="Black" Click="MenuItemNouveau_OnClick"/>
+                    <MenuItem x:Name="menuItemNouvelleFenetre" Header="Nouvelle fenêtre" Foreground="Black" Click="menuItemNouvelleFenetre_Click"/>
+                    <MenuItem x:Name="menuItemOuvrir" Header="Ouvrir" Foreground="Black" Click="menuItemOuvrir_Click"/>
                     <MenuItem x:Name="menuItemEnregistrer" Header="Enregistrer" InputGestureText="Ctrl+S" Foreground="Black" Click="MenuItemEnregistrer_OnClick"/>
-                    <MenuItem x:Name="menuItemEnregistrerSous" Header="Enregistrer sous..." InputGestureText="Ctrl+Maj+S" Foreground="Black" Click="menuItemEnregistrerSous_Click"/>
+                    <MenuItem x:Name="menuItemEnregistrerSous" Header="Enregistrer sous..." Foreground="Black" Click="menuItemEnregistrerSous_Click"/>
                     <Separator/>
                     <MenuItem x:Name="menuItemQuitter" Header="Quitter" InputGestureText="Alt+F4" Foreground="Black" Click="MenuItemQuitter_OnClick"/>
                 </MenuItem>
                 <MenuItem x:Name="menuItemEdition" Header="Edition" Width="60" Height="25">
-                    <MenuItem x:Name="menuItemAnnuler" Header="Annuler" InputGestureText="Ctrl+Z" Foreground="Black"/>
-                    <Separator/>
-                    <MenuItem x:Name="menuItemCouper" Header="Couper" InputGestureText="Ctrl+X" Foreground="Black"/>
-                    <MenuItem x:Name="menuItemCopier" Header="Copier" InputGestureText="Ctrl+C" Foreground="Black"/>
-                    <MenuItem x:Name="menuItemColler" Header="Coller" InputGestureText="Ctrl+V" Foreground="Black"/>
-                    <MenuItem x:Name="menuItemSupprimer" Header="Supprimer" InputGestureText="Del" Foreground="Black"/>
-                    <Separator/>
                     <MenuItem x:Name="menuItemRechercher" Header="Rechercher" InputGestureText="Ctrl+F" Foreground="Black"/>
                     <Separator/>
                     <MenuItem x:Name="menuItemSelectTout" Header="Sélectionner tout" InputGestureText="Ctrl+A" Foreground="Black" Click="menuItemSelectTout_Click"/>
-                    <MenuItem x:Name="menuItemHeureDate" Header="Heure/Date" InputGestureText="F5" Foreground="Black" Click="menuItemHeureDate_Click"/>
+                    <MenuItem x:Name="menuItemHeureDate" Header="Heure/Date" InputGestureText="F5" Foreground="Black" Click="menuItemHeureDate_Click">
+                        <MenuItem.InputBindings>
+                            <KeyBinding Modifiers="Shift" Key="F5"/>
+                        </MenuItem.InputBindings>
+                    </MenuItem>
                 </MenuItem>
                 <MenuItem x:Name="menuItemFormat" Header="Format" Width="60" Height="25"/>
             </Menu>
@@ -64,7 +61,8 @@
 
         <Border Grid.Row="2" Background="#383838" CornerRadius="0,0,5,5">
             <Grid x:Name="gridRow2">
-                <RichTextBox x:Name="richTextBox" Background="Transparent" BorderBrush="Transparent" Foreground="White" Margin="10,10,10,10" BorderThickness="0" CaretBrush="White" FontFamily="Borg9" TextChanged="richTextBox_TextChanged">
+                <RichTextBox x:Name="richTextBox" Background="Transparent" BorderBrush="Transparent" Foreground="White" Margin="10,10,10,10" BorderThickness="0" CaretBrush="White" FontFamily="Borg9" TextChanged="richTextBox_TextChanged" KeyDown="richTextBox_KeyDown">
+
                     <FlowDocument>
                         <Paragraph BorderBrush="Transparent" LineHeight="10">
                             <Run Text=""/>

@@ -50,8 +50,8 @@ namespace BlocNote
                 SaveFileDialog saveFileDialog = new()
                 {
                     Filter = "Text file (*.txt)|*.txt",
-                    //InitialDirectory = @"D:\Documents\Bloc notes"
-                    InitialDirectory = @"D:\Bureau"
+                    InitialDirectory = @"D:\Documents\Bloc notes"
+                    //InitialDirectory = @"D:\Bureau"
                 };
                 if (saveFileDialog.ShowDialog() == true)
                 {
