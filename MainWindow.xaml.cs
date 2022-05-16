@@ -59,7 +59,7 @@ namespace BlocNote
         }
 
 
-        private void MenuItemFermer_OnClick(object sender, RoutedEventArgs e)
+        private void MenuItemNouveau_OnClick(object sender, RoutedEventArgs e)
         {
             fichier.Close(richTextBox);
         }
@@ -76,6 +76,11 @@ namespace BlocNote
             ProcessStartInfo pInfo = new ProcessStartInfo("BlocNote.exe");
             pInfo.WorkingDirectory = @"C:\Users\Simon\source\repos\simon-vml\BlocNotes\bin\Debug\net6.0-windows";
             Process p = Process.Start(pInfo);
+        }
+
+        private void menuItemOuvrir_Click(object sender, RoutedEventArgs e)
+        {
+            fichier.Open(richTextBox, windowTitle);
         }
     }
 }

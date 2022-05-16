@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using Microsoft.Win32;
+using System.Diagnostics;
 
 namespace BlocNote
 {
@@ -43,7 +44,7 @@ namespace BlocNote
                 {
                     Filter = "Text file (*.txt)|*.txt",
                     //InitialDirectory = @"D:\Documents\Bloc notes"
-                    InitialDirectory = @"D:\Bureau"
+                    //InitialDirectory = @"D:\Bureau"
                 };
                 if (saveFileDialog.ShowDialog() == true)
                 {
@@ -64,6 +65,11 @@ namespace BlocNote
         public void Close(RichTextBox richTextBox)
         {
             TextRange textRange = new(richTextBox.Document.ContentStart, richTextBox.Document.ContentEnd);
+            if (Chemin == "" && textRange.Text.Length == 2)
+            {
+                return;
+            }
+
             // si le texte != dernier texte enregistré => proposer d'enregistrer le texte
             if (textRange.Text != Texte)
             {
@@ -87,6 +93,28 @@ namespace BlocNote
             {
                 Chemin = "";
                 richTextBox.Document.Blocks.Clear();
+            }
+        }
+
+
+        public void Open(RichTextBox richTextBox, Label labelTitre)
+        {
+            TextRange textRange = new(richTextBox.Document.ContentStart, richTextBox.Document.ContentEnd);
+            if (Chemin != "" || textRange.Text.Length != 2)
+            {
+                Close(richTextBox);
+            }
+
+            OpenFileDialog openFileDialog = new()
+            {
+                InitialDirectory = @"C:\Users\simon\OneDrive - Haute Ecole en Hainaut\Documents",
+                Filter = "Text file (*.txt)|*.txt"
+            };
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                var sr = new StreamReader(openFileDialog.FileName);
+                richTextBox.Document.Blocks.Add(new Paragraph(new Run(sr.ReadToEnd())));
             }
         }
     }

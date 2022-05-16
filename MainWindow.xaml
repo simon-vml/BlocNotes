@@ -36,12 +36,11 @@
         <Grid x:Name="gridRow1" Background="#262626" Grid.Row="1">
             <Menu Opacity="1" BorderBrush="Transparent" Foreground="White" Background="#262626" FontFamily="Borg9">
                 <MenuItem x:Name="menuItemFichier" Header="Fichier" Width="60" Height="25">
-                    <MenuItem x:Name="menuItemNouveau" Header="Nouveau" InputGestureText="Ctrl+N" Foreground="Black"/>
+                    <MenuItem x:Name="menuItemNouveau" Header="Nouveau" InputGestureText="Ctrl+N" Foreground="Black" Click="MenuItemNouveau_OnClick"/>
                     <MenuItem x:Name="menuItemNouvelleFenetre" Header="Nouvelle fenêtre" InputGestureText="Ctrl+Maj+N" Foreground="Black" Click="menuItemNouvelleFenetre_Click"/>
-                    <MenuItem x:Name="menuItemOuvrir" Header="Ouvrir" InputGestureText="Ctrl+O" Foreground="Black"/>
+                    <MenuItem x:Name="menuItemOuvrir" Header="Ouvrir" InputGestureText="Ctrl+O" Foreground="Black" Click="menuItemOuvrir_Click"/>
                     <MenuItem x:Name="menuItemEnregistrer" Header="Enregistrer" InputGestureText="Ctrl+S" Foreground="Black" Click="MenuItemEnregistrer_OnClick"/>
                     <MenuItem x:Name="menuItemEnregistrerSous" Header="Enregistrer sous..." InputGestureText="Ctrl+Maj+S" Foreground="Black"/>
-                    <MenuItem x:Name="menuItemFermer" Header="Fermer" Foreground="Black" Click="MenuItemFermer_OnClick"/>
                     <Separator/>
                     <MenuItem x:Name="menuItemQuitter" Header="Quitter" InputGestureText="Alt+F4" Foreground="Black" Click="MenuItemQuitter_OnClick"/>
                 </MenuItem>
@@ -73,6 +72,7 @@
                     </FlowDocument>
                 </RichTextBox>
             </Grid>
+
         </Border>
 
         <Image x:Name="closeWindow" Height="42" Margin="0,0,7,0" VerticalAlignment="Center" Source="/cross.png" Grid.RowSpan="2" MouseUp="closeWindow_MouseUp" Cursor="Hand" HorizontalAlignment="Right" Width="42"/>
