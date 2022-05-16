@@ -46,10 +46,6 @@ namespace BlocNote
             Close();
         }
 
-        private void MenuItemRetourALaLigne_OnClick(object sender, RoutedEventArgs e)
-        {
-            
-        }
 
         private void MenuItemEnregistrer_OnClick(object sender, RoutedEventArgs e)
         {

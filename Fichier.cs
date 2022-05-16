@@ -11,7 +11,7 @@ using Microsoft.Win32;
 
 namespace BlocNote
 {
-    internal class Fichier
+    class Fichier
     {
         private string _chemin = "";
         public string Chemin
@@ -20,10 +20,14 @@ namespace BlocNote
             set { _chemin = value; }
         }
 
-        public Fichier()
+        private string _texte;
+        public string Texte
         {
-
+            get { return _texte; }
+            set { _texte = value; }
         }
+
+        public Fichier() { }
 
         public Fichier(string chemin)
         {
@@ -34,9 +38,12 @@ namespace BlocNote
         {
             if (Chemin == "")
             {
-                SaveFileDialog saveFileDialog = new SaveFileDialog();
-                saveFileDialog.Filter = "Text file (*.txt)|*.txt";
-                saveFileDialog.InitialDirectory = @"D:\Documents\Bloc notes";
+                SaveFileDialog saveFileDialog = new()
+                {
+                    Filter = "Text file (*.txt)|*.txt",
+                    //InitialDirectory = @"D:\Documents\Bloc notes"
+                    InitialDirectory = @"D:\Bureau"
+                };
                 if (saveFileDialog.ShowDialog() == true)
                 {
                     Chemin = saveFileDialog.FileName;
@@ -48,24 +55,35 @@ namespace BlocNote
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
                 File.WriteAllText(Chemin, textRange.Text);
             }
+            Texte = textRange.Text;
         }
 
         public void Close(RichTextBox richTextBox)
         {
             TextRange textRange = new(richTextBox.Document.ContentStart, richTextBox.Document.ContentEnd);
-            if (textRange.Text == "")
+            // si le texte != dernier texte enregistré => proposer d'enregistrer le texte
+            if (textRange.Text != Texte)
             {
-                Chemin = "";
-                // à finir
-                richTextBox.Document.Blocks.Clear();
-            }
-            else
-            {
-                MessageBoxResult result = MessageBox.Show("Souhaitez-vous enregistrer le document actif ?", "Document non enregistré", MessageBoxButton.OKCancel);
-                if (result == MessageBoxResult.OK)
+                MessageBoxResult result = MessageBox.Show("Votre document n'est pas enregistré.\nSouhaitez-vous enregistrer le document actif avant de le fermer?", "Document non enregistré", MessageBoxButton.YesNoCancel);
+                // si result == oui => appel Save(), clear Chemin et vide la richTextBox
+                if (result == MessageBoxResult.Yes)
                 {
                     Save(textRange);
+                    Chemin = "";
+                    richTextBox.Document.Blocks.Clear();
                 }
+                // si result == non => ne save pas, clear Chemin et vide la richTextBox
+                else if (result == MessageBoxResult.No)
+                {
+                    Chemin = "";
+                    richTextBox.Document.Blocks.Clear();
+                }
+            }
+            // si le texte == le dernier texte enregistré => clear Chemin et vide la richTextBox
+            else
+            {
+                Chemin = "";
+                richTextBox.Document.Blocks.Clear();
             }
         }
     }

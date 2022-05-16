@@ -13,7 +13,7 @@
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
-        Icon="pictures/blocnotes.png"
+        Icon="/blocnotes.png"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanResizeWithGrip">
 
@@ -27,7 +27,7 @@
 
         <Border Grid.Row="0" CornerRadius="15,15,0,0" MouseDown="BougerFenetre_OnMouseDown" Background="#262626">
             <Grid x:Name="gridRow0">
-                <Image Grid.Row="0" Grid.Column="0" Source="pictures/blocnotes.png" Height="23" Margin="14,4,0,3" MinWidth="20" HorizontalAlignment="Left" Width="24"/>
+                <Image Grid.Row="0" Grid.Column="0" Source="/blocnotes.png" Height="23" Margin="14,4,0,3" MinWidth="20" HorizontalAlignment="Left" Width="24"/>
                 <Label x:Name="windowTitle" Grid.Row="0" Content="Bloc-notes" Foreground="White" VerticalContentAlignment="Center" FontFamily="Borg9" Margin="42,0,19,0"/>
             </Grid>
         </Border>
@@ -58,11 +58,7 @@
                     <MenuItem x:Name="menuItemSelectTout" Header="Sélectionner tout" InputGestureText="Ctrl+A" Foreground="Black"/>
                     <MenuItem x:Name="menuItemHeureDate" Header="Heure/Date" InputGestureText="F5" Foreground="Black"/>
                 </MenuItem>
-                <MenuItem x:Name="menuItemFormat" Header="Format" Width="60" Height="25">
-                    <MenuItem x:Name="menuItemRetourALaLigne" Header="Retour automatique à la ligne" IsCheckable="True" Foreground="Black" Click="MenuItemRetourALaLigne_OnClick"/>
-                    <Separator/>
-                    <MenuItem x:Name="menuItemParagraphe" Header="Paragraphe" Foreground="Black"/>
-                </MenuItem>
+                <MenuItem x:Name="menuItemFormat" Header="Format" Width="60" Height="25"/>
             </Menu>
         </Grid>
 
@@ -79,7 +75,7 @@
             </Grid>
         </Border>
 
-        <Image x:Name="closeWindow" Height="42" Margin="0,0,7,0" VerticalAlignment="Center" Source="pictures/cross.png" Grid.RowSpan="2" MouseUp="closeWindow_MouseUp" Cursor="Hand" HorizontalAlignment="Right" Width="42"/>
+        <Image x:Name="closeWindow" Height="42" Margin="0,0,7,0" VerticalAlignment="Center" Source="/cross.png" Grid.RowSpan="2" MouseUp="closeWindow_MouseUp" Cursor="Hand" HorizontalAlignment="Right" Width="42"/>
 
     </Grid>
 

@@ -20,6 +20,8 @@
 
 
 	<ItemGroup>
+	  <Resource Include="blocnotes.png" />
+	  <Resource Include="cross.png" />
 	  <Resource Include="pictures/blocnotes.png" />
 	  <Resource Include="pictures/cross.png" />
 	</ItemGroup>
