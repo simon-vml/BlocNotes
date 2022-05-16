@@ -9,6 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using Microsoft.Win32;
 using System.Diagnostics;
+using System.DirectoryServices.ActiveDirectory;
 
 namespace BlocNote
 {
@@ -35,6 +36,13 @@ namespace BlocNote
             set { _labell = value; }
         }
 
+        private bool _isCalledByMenuItemNouveau = false;
+        public bool IsCalledByMenuItemNouveau
+        {
+            get { return _isCalledByMenuItemNouveau; }
+            set { _isCalledByMenuItemNouveau = value; }
+        }
+
 
         public Fichier() { }
         public Fichier(string chemin)
@@ -55,26 +63,44 @@ namespace BlocNote
                 };
                 if (saveFileDialog.ShowDialog() == true)
                 {
-                    Chemin = saveFileDialog.FileName;
-                    textRange.Text = textRange.Text.Remove(textRange.Text.Length - 1);
-                    textRange.Text = textRange.Text.Remove(textRange.Text.Length - 1);
-                    File.WriteAllText(Chemin, textRange.Text);
-                    Labell.Content = $"{saveFileDialog.SafeFileName} - Bloc-notes";
+                    if (IsCalledByMenuItemNouveau)
+                    {
+                        Chemin = saveFileDialog.FileName;
+                        File.WriteAllText(Chemin, textRange.Text);
+                        Labell.Content = $"{saveFileDialog.SafeFileName} - Bloc-notes";
+                        IsCalledByMenuItemNouveau = false;
+                    }
+                    else
+                    {
+                        Chemin = saveFileDialog.FileName;
+                        textRange.Text = textRange.Text.Remove(textRange.Text.Length - 1);
+                        textRange.Text = textRange.Text.Remove(textRange.Text.Length - 1);
+                        File.WriteAllText(Chemin, textRange.Text);
+                        Labell.Content = $"{saveFileDialog.SafeFileName} - Bloc-notes";
+                    }
                 }
             }
             else
             {
-                textRange.Text = textRange.Text.Remove(textRange.Text.Length - 1);
-                textRange.Text = textRange.Text.Remove(textRange.Text.Length - 1);
-                File.WriteAllText(Chemin, textRange.Text);
-                string newLabel = Labell.Content.ToString().Remove(0, 1);
-                Labell.Content = newLabel;
+                if (IsCalledByMenuItemNouveau)
+                {
+                    File.WriteAllText(Chemin, textRange.Text);
+                    string newLabel = Labell.Content.ToString().Remove(0, 1);
+                    Labell.Content = newLabel;
+                }
+                else
+                {
+                    textRange.Text = textRange.Text.Remove(textRange.Text.Length - 1);
+                    textRange.Text = textRange.Text.Remove(textRange.Text.Length - 1);
+                    File.WriteAllText(Chemin, textRange.Text);
+                    string newLabel = Labell.Content.ToString().Remove(0, 1);
+                    Labell.Content = newLabel;
+                }
             }
             Texte = textRange.Text;
         }
 
 
-        // fonction a refaire avec une fenêtre personnalisée plutôt qu'une MessageBox
         public void Nouveau(RichTextBox richTextBox)
         {
             TextRange textRange = new(richTextBox.Document.ContentStart, richTextBox.Document.ContentEnd);
@@ -93,9 +119,10 @@ namespace BlocNote
             // si le texte != dernier texte enregistré => proposer d'enregistrer le texte
             if (textRange.Text != Texte)
             {
-                MessageBoxResult result = MessageBox.Show("Votre document n'est pas enregistré.\nSouhaitez-vous enregistrer le document actif avant de le fermer?", "Document non enregistré", MessageBoxButton.YesNoCancel);
+                AvertissementDocumentPasSauvegarde avertissement = new();
+
                 // si result == oui => appel Save(), clear Chemin et vide la richTextBox
-                if (result == MessageBoxResult.Yes)
+                if (avertissement.Choix == "yes")
                 {
                     Save(textRange);
                     Chemin = "";
@@ -103,7 +130,7 @@ namespace BlocNote
                     Labell.Content = "*Sans titre - Bloc-notes";
                 }
                 // si result == non => ne save pas, clear Chemin et vide la richTextBox
-                else if (result == MessageBoxResult.No)
+                else if (avertissement.Choix == "no")
                 {
                     Chemin = "";
                     richTextBox.Document.Blocks.Clear();
@@ -156,11 +183,20 @@ namespace BlocNote
             };
             if (saveFileDialog.ShowDialog() == true)
             {
-                Chemin = saveFileDialog.FileName;
-                textRange.Text = textRange.Text.Remove(textRange.Text.Length - 1);
-                textRange.Text = textRange.Text.Remove(textRange.Text.Length - 1);
-                File.WriteAllText(Chemin, textRange.Text);
-                Labell.Content = $"{saveFileDialog.SafeFileName} - Bloc-notes";
+                if (IsCalledByMenuItemNouveau)
+                {
+                    Chemin = saveFileDialog.FileName;
+                    File.WriteAllText(Chemin, textRange.Text);
+                    Labell.Content = $"{saveFileDialog.SafeFileName} - Bloc-notes";
+                }
+                else
+                {
+                    Chemin = saveFileDialog.FileName;
+                    textRange.Text = textRange.Text.Remove(textRange.Text.Length - 1);
+                    textRange.Text = textRange.Text.Remove(textRange.Text.Length - 1);
+                    File.WriteAllText(Chemin, textRange.Text);
+                    Labell.Content = $"{saveFileDialog.SafeFileName} - Bloc-notes";
+                }
             }
         }
     }

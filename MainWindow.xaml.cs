@@ -62,6 +62,7 @@ namespace BlocNote
 
         private void MenuItemNouveau_OnClick(object sender, RoutedEventArgs e)
         {
+            fichier.IsCalledByMenuItemNouveau = true;
             fichier.Nouveau(richTextBox);
         }
 
