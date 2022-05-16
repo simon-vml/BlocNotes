@@ -34,8 +34,37 @@ namespace BlocNote
 
         private void closeWindow_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            fichier.Nouveau(richTextBox);
-            Close();
+            TextRange textRange = new(richTextBox.Document.ContentStart, richTextBox.Document.ContentEnd);
+            // retire les deux derniers char de textRange.Text car retour à la ligne à enlever
+            if (!textRange.IsEmpty)
+            {
+                textRange.Text = textRange.Text.Remove(textRange.Text.Length - 1);
+                textRange.Text = textRange.Text.Remove(textRange.Text.Length - 1);
+            }
+            if (fichier.Chemin == "" && textRange.IsEmpty)
+            {
+                Close();
+            }
+            if (textRange.Text != fichier.Texte)
+            {
+                AvertissementDocumentPasSauvegarde avertissement = new();
+                // si result == oui => appel Save() et ferme la fenêtre
+                if (avertissement.Choix == "yes")
+                {
+                    fichier.IsCalledByMenuItemNouveau = true;
+                    fichier.Save(textRange);
+                    Close();
+                }
+                // si result == non => ne save pas et ferme la fenêtre
+                else if (avertissement.Choix == "no")
+                {
+                    Close();
+                }
+            }
+            else
+            {
+                Close();
+            }
         }
 
 
@@ -50,8 +79,37 @@ namespace BlocNote
 
         private void MenuItemQuitter_OnClick(object sender, RoutedEventArgs e)
         {
-            fichier.Nouveau(richTextBox);
-            Close();
+            TextRange textRange = new(richTextBox.Document.ContentStart, richTextBox.Document.ContentEnd);
+            // retire les deux derniers char de textRange.Text car retour à la ligne à enlever
+            if (!textRange.IsEmpty)
+            {
+                textRange.Text = textRange.Text.Remove(textRange.Text.Length - 1);
+                textRange.Text = textRange.Text.Remove(textRange.Text.Length - 1);
+            }
+            if (fichier.Chemin == "" && textRange.IsEmpty)
+            {
+                Close();
+            }
+            if (textRange.Text != fichier.Texte)
+            {
+                AvertissementDocumentPasSauvegarde avertissement = new();
+                // si result == oui => appel Save() et ferme la fenêtre
+                if (avertissement.Choix == "yes")
+                {
+                    fichier.IsCalledByMenuItemNouveau = true;
+                    fichier.Save(textRange);
+                    Close();
+                }
+                // si result == non => ne save pas et ferme la fenêtre
+                else if (avertissement.Choix == "no")
+                {
+                    Close();
+                }
+            }
+            else
+            {
+                Close();
+            }
         }
 
 
