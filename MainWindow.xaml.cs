@@ -79,10 +79,12 @@ namespace BlocNote
             Process p = Process.Start(pInfo);
         }
 
+
         private void menuItemOuvrir_Click(object sender, RoutedEventArgs e)
         {
             fichier.Open(richTextBox, windowTitle);
         }
+
 
         private void richTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -90,6 +92,13 @@ namespace BlocNote
             {
                 windowTitle.Content = $"*{windowTitle.Content}";
             }
+        }
+
+
+        private void menuItemEnregistrerSous_Click(object sender, RoutedEventArgs e)
+        {
+            TextRange textRange = new(richTextBox.Document.ContentStart, richTextBox.Document.ContentEnd);
+            fichier.SaveSous(textRange);
         }
     }
 }

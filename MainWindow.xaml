@@ -40,7 +40,7 @@
                     <MenuItem x:Name="menuItemNouvelleFenetre" Header="Nouvelle fenêtre" InputGestureText="Ctrl+Maj+N" Foreground="Black" Click="menuItemNouvelleFenetre_Click"/>
                     <MenuItem x:Name="menuItemOuvrir" Header="Ouvrir" InputGestureText="Ctrl+O" Foreground="Black" Click="menuItemOuvrir_Click"/>
                     <MenuItem x:Name="menuItemEnregistrer" Header="Enregistrer" InputGestureText="Ctrl+S" Foreground="Black" Click="MenuItemEnregistrer_OnClick"/>
-                    <MenuItem x:Name="menuItemEnregistrerSous" Header="Enregistrer sous..." InputGestureText="Ctrl+Maj+S" Foreground="Black"/>
+                    <MenuItem x:Name="menuItemEnregistrerSous" Header="Enregistrer sous..." InputGestureText="Ctrl+Maj+S" Foreground="Black" Click="menuItemEnregistrerSous_Click"/>
                     <Separator/>
                     <MenuItem x:Name="menuItemQuitter" Header="Quitter" InputGestureText="Alt+F4" Foreground="Black" Click="MenuItemQuitter_OnClick"/>
                 </MenuItem>

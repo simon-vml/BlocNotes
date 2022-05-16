@@ -144,5 +144,24 @@ namespace BlocNote
                 // enlever retour à la ligne quand on ouvre un fichier au démarage
             }
         }
+
+
+        public void SaveSous(TextRange textRange)
+        {
+            SaveFileDialog saveFileDialog = new()
+            {
+                Filter = "Text file (*.txt)|*.txt",
+                //InitialDirectory = @"D:\Documents\Bloc notes"
+                InitialDirectory = @"D:\Bureau"
+            };
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                Chemin = saveFileDialog.FileName;
+                textRange.Text = textRange.Text.Remove(textRange.Text.Length - 1);
+                textRange.Text = textRange.Text.Remove(textRange.Text.Length - 1);
+                File.WriteAllText(Chemin, textRange.Text);
+                Labell.Content = $"{saveFileDialog.SafeFileName} - Bloc-notes";
+            }
+        }
     }
 }
