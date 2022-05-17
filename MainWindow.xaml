@@ -13,7 +13,7 @@
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
-        Icon="/blocnotes.png"
+        Icon="blocnotes.png"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanResizeWithGrip">
 

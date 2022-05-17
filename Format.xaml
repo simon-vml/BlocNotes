@@ -6,18 +6,21 @@
         xmlns:local="clr-namespace:BlocNote"
         mc:Ignorable="d"
         Title="Format" 
-        Height="200" 
+        Height="300" 
         Width="300"
         AllowsTransparency="True"
         Background="Transparent"
         WindowStyle="None"
         ResizeMode="NoResize"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen" KeyDown="Window_KeyDown">
 
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
+            <RowDefinition Height="85"/>
+            <RowDefinition Height="85"/>
+            <RowDefinition Height="2"/>
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
@@ -62,29 +65,46 @@
         </Grid>
 
 
-        <Border Grid.Row="2" Grid.Column="0" CornerRadius="0,0,0,5" Background="#303030">
+        <Grid Grid.Row="2" Grid.Column="0" Background="#303030">
+            <Label Content="Couleur1:" HorizontalAlignment="Center" Margin="0,17,0,0" VerticalAlignment="Top" Width="120" Foreground="White"/>
+            <TextBox x:Name="txtBoxCouleur1" Margin="15,42,45,23" Width="90" Height="22" TextChanged="txtBoxCouleur1_TextChanged"/>
+            <Rectangle x:Name="rectangleCouleur1" HorizontalAlignment="Left" Height="20" Margin="115,42,0,0" Stroke="Black" VerticalAlignment="Top" Width="20">
+                <Rectangle.Fill>
+                    <SolidColorBrush x:Name="aColor1"/>
+                </Rectangle.Fill>
+            </Rectangle>
+        </Grid>
+
+        <Grid Grid.Row="2" Grid.Column="1" Background="#303030">
+            <Label Content="Couleur2:" HorizontalAlignment="Center" Margin="0,17,0,0" VerticalAlignment="Top" Width="120" Foreground="White"/>
+            <TextBox x:Name="txtBoxCouleur2" Margin="15,42,45,23" Width="90" Height="22" TextChanged="txtBoxCouleur2_TextChanged"/>
+            <Rectangle x:Name="rectangleCouleur2" HorizontalAlignment="Left" Height="20" Margin="115,42,0,0" Stroke="Black" VerticalAlignment="Top" Width="20">
+                <Rectangle.Fill>
+                    <SolidColorBrush x:Name="aColor2"/>
+                </Rectangle.Fill>
+            </Rectangle>
+        </Grid>
+
+        <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Background="Black">
+            <Separator/>
+        </Grid>
+
+
+        <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Background="#303030">
+            <Label Content="Nouveau Preset :" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="103" Foreground="White"/>
+            <TextBox x:Name="txtBoxPresets" HorizontalAlignment="Left" Margin="125,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="100" Height="22"/>
+            <Button Content="Save" HorizontalAlignment="Right" Margin="0,0,15,0" VerticalAlignment="Center" Height="22" Width="50" Click="Button_Click"/>
+        </Grid>
+
+        <Border Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" CornerRadius="0,0,5,5" Background="#303030">
             <Grid>
-                <Label Content="Couleur1:" HorizontalAlignment="Center" Margin="0,17,0,0" VerticalAlignment="Top" Width="120" Foreground="White"/>
-                <TextBox x:Name="txtBoxCouleur1" Margin="15,42,45,23" Width="90" Height="22" TextChanged="txtBoxCouleur1_TextChanged"/>
-                <Rectangle x:Name="rectangleCouleur1" HorizontalAlignment="Left" Height="20" Margin="115,42,0,0" Stroke="Black" VerticalAlignment="Top" Width="20">
-                    <Rectangle.Fill>
-                        <SolidColorBrush x:Name="aColor1"/>
-                    </Rectangle.Fill>
-                </Rectangle>
+                <Label Content="Charger un Preset :" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="110" Foreground="White"/>
+                <ComboBox x:Name="comboBoxPresets" Margin="125,0,0,0" Width="100" Height="22" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Button x:Name="buttonLoad" Content="Load" HorizontalAlignment="Right" Margin="0,0,15,0" VerticalAlignment="Center" Height="22" Width="50" Click="buttonLoad_Click"/>
             </Grid>
         </Border>
 
-        <Border Grid.Row="2" Grid.Column="1" CornerRadius="0,0,5,0" Background="#303030">
-            <Grid>
-                <Label Content="Couleur2:" HorizontalAlignment="Center" Margin="0,17,0,0" VerticalAlignment="Top" Width="120" Foreground="White"/>
-                <TextBox x:Name="txtBoxCouleur2" Margin="15,42,45,23" Width="90" Height="22" TextChanged="txtBoxCouleur2_TextChanged"/>
-                <Rectangle x:Name="rectangleCouleur2" HorizontalAlignment="Left" Height="20" Margin="115,42,0,0" Stroke="Black" VerticalAlignment="Top" Width="20">
-                    <Rectangle.Fill>
-                        <SolidColorBrush x:Name="aColor2"/>
-                    </Rectangle.Fill>
-                </Rectangle>
-            </Grid>
-        </Border>
+
         <Image x:Name="closeWindow" Grid.Column="1" HorizontalAlignment="Left" Height="28" Margin="110,3,0,0" VerticalAlignment="Top" Width="28" Source="/cross.png" Cursor="Hand" MouseUp="closeWindow_MouseUp" Grid.RowSpan="2"/>
     </Grid>
 </Window>

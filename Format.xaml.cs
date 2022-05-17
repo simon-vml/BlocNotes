@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +15,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Microsoft.Win32;
+using Path = System.IO.Path;
 
 namespace BlocNote
 {
@@ -50,6 +54,9 @@ namespace BlocNote
         }
 
 
+        private ObservableCollection<Presets> _observableCollection = new();
+
+
         public Format(string police, int taille, string couleur1, string couleur2)
         {
             InitializeComponent();
@@ -59,6 +66,13 @@ namespace BlocNote
             Couleur1 = couleur1;
             Couleur2 = couleur2;
 
+            SetupInfosSurLaFenetre();
+            LoadAllPresetsInComboBox();
+            this.ShowDialog();
+        }
+
+        private void SetupInfosSurLaFenetre()
+        {
             txtBoxCouleur1.Text = Couleur1;
             txtBoxCouleur2.Text = Couleur2;
 
@@ -72,7 +86,7 @@ namespace BlocNote
                 }
                 compteurComboBoxPolice++;
             }
-            comboPolice.SelectedIndex = compteurComboBoxPolice-1;
+            comboPolice.SelectedIndex = compteurComboBoxPolice - 1;
 
 
             int compteurComboBoxTaille = 0;
@@ -85,7 +99,25 @@ namespace BlocNote
                 compteurComboBoxTaille++;
             }
             comboTaille.SelectedIndex = compteurComboBoxTaille;
-            this.ShowDialog();
+        }
+
+        private void LoadAllPresetsInComboBox()
+        {
+            string combinedPath = System.IO.Path.Combine(Directory.GetCurrentDirectory(), @"../../../presets.txt");
+            string realPath = Path.GetFullPath(combinedPath);
+            List<string> allLinesText = File.ReadAllLines(realPath).ToList();
+            foreach (string line in allLinesText)
+            {
+                string[] tempList = line.Split("#");
+                Presets preset = new Presets(tempList[0], tempList[1], Int32.Parse(tempList[2]), tempList[3],
+                    tempList[4]);
+                _observableCollection.Add(preset);
+            }
+
+            foreach (Presets preset in _observableCollection)
+            {
+                comboBoxPresets.Items.Add(preset.NomDuPreset);
+            }
         }
 
         private void closeWindow_MouseUp(object sender, MouseButtonEventArgs e)
@@ -139,6 +171,72 @@ namespace BlocNote
                     aColor2.Color = color;
                 }
                 catch { }
+            }
+        }
+
+        private void buttonLoad_Click(object sender, RoutedEventArgs e)
+        {
+            int indexPreset = comboBoxPresets.SelectedIndex;
+            if (indexPreset == -1)
+            {
+                return;
+            }
+            Presets selectedPreset = _observableCollection[indexPreset];
+
+            Police = selectedPreset.Police;
+            Taille = selectedPreset.Taille;
+            Couleur1 = $"#{selectedPreset.Couleur1}";
+            Couleur2 = $"#{selectedPreset.Couleur2}";
+
+            txtBoxCouleur1.Text = Couleur1;
+            txtBoxCouleur2.Text = Couleur2;
+
+            int compteurPolice = 0;
+            foreach (ComboBoxItem item in comboPolice.Items)
+            {
+                if (item.Content.ToString() == Police)
+                {
+                    break;
+                }
+                compteurPolice++;
+            }
+            comboPolice.SelectedIndex = compteurPolice;
+
+
+            int compteurTaille = 0;
+            foreach (ComboBoxItem item in comboTaille.Items)
+            {
+                if (item.Content.ToString() == Taille.ToString())
+                {
+                    break;
+                }
+                compteurTaille++;
+            }
+            comboTaille.SelectedIndex = compteurTaille;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string nomDuPreset = txtBoxPresets.Text;
+            string couleur1 = Couleur1;
+            couleur1 = couleur1.Remove(0, 1);
+            string couleur2 = Couleur2;
+            couleur2 = couleur2.Remove(0, 1);
+            string nouveauPreset = $@"{nomDuPreset}#{Police}#{Taille}#{couleur1}#{couleur2}";
+            string combinedPath = System.IO.Path.Combine(Directory.GetCurrentDirectory(), @"../../../presets.txt");
+            string realPath = Path.GetFullPath(combinedPath);
+            File.AppendAllText(realPath, nouveauPreset + Environment.NewLine);
+            Presets preset = new(nomDuPreset, Police, Taille, couleur1, couleur2);
+            _observableCollection.Add(preset);
+            comboBoxPresets.Items.Add(preset.NomDuPreset);
+            txtBoxPresets.Text = "";
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                Close();
             }
         }
     }

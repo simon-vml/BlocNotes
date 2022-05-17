@@ -167,8 +167,6 @@ namespace BlocNote
                 richTextBox.Document.Blocks.Add(new Paragraph(new Run(sr.ReadToEnd())));
                 Chemin = openFileDialog.FileName;
                 Labell.Content = $"{openFileDialog.SafeFileName} - Bloc-notes";
-
-                // enlever retour à la ligne quand on ouvre un fichier au démarage
             }
         }
 
