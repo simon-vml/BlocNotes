@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Win32;
 using System.Drawing;
+using System.Net.Mime;
 
 namespace BlocNote
 {
@@ -150,6 +151,8 @@ namespace BlocNote
         {
             TextRange textRange = new(richTextBox.Document.ContentStart, richTextBox.Document.ContentEnd);
             fichier.Save(textRange);
+            richTextBox.CaretPosition = richTextBox.CaretPosition.DocumentEnd;
+
         }
 
 
