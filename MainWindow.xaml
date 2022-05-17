@@ -9,7 +9,7 @@
         Height="450" 
         Width="800"
         MinHeight="150"
-        MinWidth="250"
+        MinWidth="350"
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
@@ -48,13 +48,9 @@
                     <MenuItem x:Name="menuItemRechercher" Header="Rechercher" InputGestureText="Ctrl+F" Foreground="Black"/>
                     <Separator/>
                     <MenuItem x:Name="menuItemSelectTout" Header="Sélectionner tout" InputGestureText="Ctrl+A" Foreground="Black" Click="menuItemSelectTout_Click"/>
-                    <MenuItem x:Name="menuItemHeureDate" Header="Heure/Date" InputGestureText="F5" Foreground="Black" Click="menuItemHeureDate_Click">
-                        <MenuItem.InputBindings>
-                            <KeyBinding Modifiers="Shift" Key="F5"/>
-                        </MenuItem.InputBindings>
-                    </MenuItem>
+                    <MenuItem x:Name="menuItemHeureDate" Header="Heure/Date" InputGestureText="F5" Foreground="Black" Click="menuItemHeureDate_Click"/>
                 </MenuItem>
-                <MenuItem x:Name="menuItemFormat" Header="Format" Width="60" Height="25"/>
+                <MenuItem x:Name="menuItemFormat" Header="Format" Width="60" Height="25" Click="menuItemFormat_Click"/>
             </Menu>
         </Grid>
 
@@ -62,7 +58,6 @@
         <Border Grid.Row="2" Background="#383838" CornerRadius="0,0,5,5">
             <Grid x:Name="gridRow2">
                 <RichTextBox x:Name="richTextBox" Background="Transparent" BorderBrush="Transparent" Foreground="White" Margin="10,10,10,10" BorderThickness="0" CaretBrush="White" FontFamily="Borg9" TextChanged="richTextBox_TextChanged" KeyDown="richTextBox_KeyDown">
-
                     <FlowDocument>
                         <Paragraph BorderBrush="Transparent" LineHeight="10">
                             <Run Text=""/>
@@ -70,9 +65,7 @@
                     </FlowDocument>
                 </RichTextBox>
             </Grid>
-
         </Border>
-
         <Image x:Name="closeWindow" Height="42" Margin="0,0,7,0" VerticalAlignment="Center" Source="/cross.png" Grid.RowSpan="2" MouseUp="closeWindow_MouseUp" Cursor="Hand" HorizontalAlignment="Right" Width="42"/>
         <Image x:Name="fullScreen" Height="30" Margin="0,0,60,0" Grid.RowSpan="2" VerticalAlignment="Center" Source="/square.png" MouseUp="fullScreen_MouseUp" Cursor="Hand" HorizontalAlignment="Right" Width="30"/>
         <Image x:Name="minimize" Height="42" Margin="0,0,99,0" Grid.RowSpan="2" VerticalAlignment="Center" Source="/horizontal.png" Cursor="Hand" MouseUp="minimize_MouseUp" HorizontalAlignment="Right" Width="42"/>

@@ -191,6 +191,7 @@ namespace BlocNote
             }
         }
 
+
         private void fullScreen_MouseUp(object sender, MouseButtonEventArgs e)
         {
             if (!_isFullScreen)
@@ -203,9 +204,17 @@ namespace BlocNote
             _isFullScreen = false;
         }
 
+
         private void minimize_MouseUp(object sender, MouseButtonEventArgs e)
         {
             WindowState = WindowState.Minimized;
+        }
+
+
+        private void menuItemFormat_Click(object sender, RoutedEventArgs e)
+        {
+            Format windowFormat = new();
+            windowFormat.ShowDialog();
         }
     }
 }
