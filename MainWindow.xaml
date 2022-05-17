@@ -25,7 +25,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Border Grid.Row="0" CornerRadius="15,15,0,0" MouseDown="BougerFenetre_OnMouseDown" Background="#262626">
+        <Border x:Name="borderBarreDeTitre" Grid.Row="0" CornerRadius="15,15,0,0" MouseDown="BougerFenetre_OnMouseDown">
             <Grid x:Name="gridRow0">
                 <Image Grid.Row="0" Grid.Column="0" Source="/blocnotes.png" Height="23" Margin="20,7,0,0" MinWidth="20" HorizontalAlignment="Left" Width="23"/>
                 <Label x:Name="windowTitle" Grid.Row="0" Content="*Sans titre - Bloc-notes" Foreground="White" VerticalContentAlignment="Center" FontFamily="Borg9" Margin="54,5,0,-5" HorizontalAlignment="Left" Width="727"/>
@@ -33,8 +33,8 @@
         </Border>
 
 
-        <Grid x:Name="gridRow1" Background="#262626" Grid.Row="1">
-            <Menu Opacity="1" BorderBrush="Transparent" Foreground="White" Background="#262626" FontFamily="Borg9" Margin="10,0,0,0" HorizontalAlignment="Left" Width="790">
+        <Grid x:Name="gridRow1" Grid.Row="1">
+            <Menu x:Name="menuGlobal" Opacity="1" BorderBrush="Transparent" Foreground="White" FontFamily="Borg9" Margin="10,0,0,0" HorizontalAlignment="Left" Width="790" Background="{x:Null}">
                 <MenuItem x:Name="menuItemFichier" Header="Fichier" Width="60" Height="25">
                     <MenuItem x:Name="menuItemNouveau" Header="Nouveau" Foreground="Black" Click="MenuItemNouveau_OnClick"/>
                     <MenuItem x:Name="menuItemNouvelleFenetre" Header="Nouvelle fenêtre" Foreground="Black" Click="menuItemNouvelleFenetre_Click"/>
@@ -55,12 +55,12 @@
         </Grid>
 
 
-        <Border Grid.Row="2" Background="#383838" CornerRadius="0,0,5,5">
+        <Border x:Name="borderRichTextBox" Grid.Row="2" CornerRadius="0,0,5,5">
             <Grid x:Name="gridRow2">
-                <RichTextBox x:Name="richTextBox" Background="Transparent" BorderBrush="Transparent" Foreground="White" Margin="10,10,10,10" BorderThickness="0" CaretBrush="White" FontFamily="Borg9" TextChanged="richTextBox_TextChanged" KeyDown="richTextBox_KeyDown">
+                <RichTextBox x:Name="richTextBox" Background="Transparent" BorderBrush="Transparent" Foreground="White" Margin="10,10,10,10" BorderThickness="0" CaretBrush="White" TextChanged="richTextBox_TextChanged" KeyDown="richTextBox_KeyDown">
                     <FlowDocument>
                         <Paragraph BorderBrush="Transparent" LineHeight="10">
-                            <Run Text=""/>
+                            <Run x:Name="runRichTextBox" Text=""/>
                         </Paragraph>
                     </FlowDocument>
                 </RichTextBox>

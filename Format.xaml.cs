@@ -21,28 +21,28 @@ namespace BlocNote
     /// </summary>
     public partial class Format : Window
     {
-        private string _police = "Borg9";
+        private string _police;
         public string Police
         {
             get { return _police; }
             set { _police = value; }
         }
 
-        private int _taille = 12;
+        private int _taille;
         public int Taille
         {
             get { return _taille; }
             set { _taille = value; }
         }
 
-        private string _couleur1 = "#262626";
+        private string _couleur1;
         public string Couleur1
         {
             get { return _couleur1; }
             set { _couleur1 = value; }
         }
 
-        private string _couleur2 = "#383838";
+        private string _couleur2;
         public string Couleur2
         {
             get { return _couleur2; }
@@ -50,16 +50,46 @@ namespace BlocNote
         }
 
 
-        public Format()
+        public Format(string police, int taille, string couleur1, string couleur2)
         {
             InitializeComponent();
-            txtBoxCouleur1.Text = "#262626";
-            txtBoxCouleur2.Text = "#383838";
+
+            Police = police;
+            Taille = taille;
+            Couleur1 = couleur1;
+            Couleur2 = couleur2;
+
+            txtBoxCouleur1.Text = Couleur1;
+            txtBoxCouleur2.Text = Couleur2;
+
+
+            int compteurComboBoxPolice = 1;
+            foreach (ComboBoxItem comboBoxItem in comboPolice.Items)
+            {
+                if (comboBoxItem.Content.ToString() == Police)
+                {
+                    break;
+                }
+                compteurComboBoxPolice++;
+            }
+            comboPolice.SelectedIndex = compteurComboBoxPolice-1;
+
+
+            int compteurComboBoxTaille = 0;
+            foreach (ComboBoxItem comboBoxItem in comboTaille.Items)
+            {
+                if (comboBoxItem.Content.ToString() == Taille.ToString())
+                {
+                    break;
+                }
+                compteurComboBoxTaille++;
+            }
+            comboTaille.SelectedIndex = compteurComboBoxTaille;
+            this.ShowDialog();
         }
 
         private void closeWindow_MouseUp(object sender, MouseButtonEventArgs e)
         {
-
             Close();
         }
 

@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Win32;
+using System.Drawing;
 
 namespace BlocNote
 {
@@ -25,14 +26,39 @@ namespace BlocNote
         private Fichier fichier = new Fichier();
 
         private bool _isFullScreen = false;
-        
+
+        private string _police = "Borg9";
+        private int _taille = 18;
+        private string _couleur1 = "#262626";
+        private string _couleur2 = "#383838";
+
+
 
         public MainWindow()
         {
             InitializeComponent();
             fichier.Labell = windowTitle;
+            SetupWindow();
         }
         
+        private void SetupWindow()
+        {
+            var brush1 = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, (byte)26, (byte)26, (byte)26));
+            borderBarreDeTitre.Background = brush1;
+            gridRow1.Background = brush1;
+            menuGlobal.Background = brush1;
+
+            var brush2 = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, (byte)38, (byte)38, (byte)38));
+            borderRichTextBox.Background = brush2;
+
+
+            FontFamily fontFamily = new FontFamily(_police);
+            richTextBox.FontFamily = fontFamily;
+
+
+            richTextBox.FontSize = _taille;
+        }
+
 
         private void closeWindow_MouseUp(object sender, MouseButtonEventArgs e)
         {
@@ -213,8 +239,53 @@ namespace BlocNote
 
         private void menuItemFormat_Click(object sender, RoutedEventArgs e)
         {
-            Format windowFormat = new();
-            windowFormat.ShowDialog();
+            Format windowFormat = new(_police, _taille, _couleur1, _couleur2);
+            _police = windowFormat.Police;
+            _taille = windowFormat.Taille;
+            _couleur1 = windowFormat.Couleur1;
+            _couleur2 = windowFormat.Couleur2;
+
+            richTextBox.FontSize = _taille;
+            runRichTextBox.FontFamily = new FontFamily(_police);
+
+            if (windowFormat.Couleur1.Length == 4)
+            {
+                int R = windowFormat.Couleur1[1];
+                int G = windowFormat.Couleur1[2];
+                int B = windowFormat.Couleur1[3];
+                var brush = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, (byte)R, (byte)G, (byte)B));
+                borderBarreDeTitre.Background = brush;
+                gridRow1.Background = brush;
+                menuGlobal.Background = brush;
+            }
+            else if (windowFormat.Couleur1.Length == 7)
+            {
+                int R = Int32.Parse($"{windowFormat.Couleur1[1]}{windowFormat.Couleur1[2]}");
+                int G = Int32.Parse($"{windowFormat.Couleur1[3]}{windowFormat.Couleur1[4]}");
+                int B = Int32.Parse($"{windowFormat.Couleur1[5]}{windowFormat.Couleur1[6]}");
+                var brush = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, (byte)R, (byte)G, (byte)B));
+                borderBarreDeTitre.Background = brush;
+                gridRow1.Background = brush;
+                menuGlobal.Background= brush;
+            }
+
+
+            if (windowFormat.Couleur2.Length == 4)
+            {
+                int R = windowFormat.Couleur2[1];
+                int G = windowFormat.Couleur2[2];
+                int B = windowFormat.Couleur2[3];
+                var brush = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, (byte)R, (byte)G, (byte)B));
+                borderRichTextBox.Background = brush;
+            }
+            else if (windowFormat.Couleur2.Length == 7)
+            {
+                int R = Int32.Parse($"{windowFormat.Couleur2[1]}{windowFormat.Couleur2[2]}");
+                int G = Int32.Parse($"{windowFormat.Couleur2[3]}{windowFormat.Couleur2[4]}");
+                int B = Int32.Parse($"{windowFormat.Couleur2[5]}{windowFormat.Couleur2[6]}");
+                var brush = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, (byte)R, (byte)G, (byte)B));
+                borderRichTextBox.Background = brush;
+            }
         }
     }
 }

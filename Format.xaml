@@ -28,16 +28,14 @@
 
 
         <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" CornerRadius="15,15,0,0" Background="#262626" MouseDown="Border_MouseDown">
-            <Grid>
-
-            </Grid>
+            <Label Content="Format" Margin="10,0,202,0" Foreground="White" VerticalContentAlignment="Center"/>
         </Border>
 
 
         <Grid Grid.Row="1" Grid.Column="0" Background="#303030">
             <Label Content="Police:" HorizontalAlignment="Center" Margin="0,17,0,0" VerticalAlignment="Top" Width="120" Foreground="White"/>
             <ComboBox x:Name="comboPolice" HorizontalAlignment="Center" Margin="0,42,0,0" VerticalAlignment="Top" Width="120" Height="22" SelectionChanged="comboPolice_SelectionChanged">
-                <ComboBoxItem Content="Borg9" IsSelected="True"/>
+                <ComboBoxItem Content="Borg9"/>
                 <ComboBoxItem Content="Arial"/>
                 <ComboBoxItem Content="Comic Sans MS"/>
                 <ComboBoxItem Content="Sans serif"/>
@@ -50,10 +48,16 @@
                 <ComboBoxItem Content="9"/>
                 <ComboBoxItem Content="10"/>
                 <ComboBoxItem Content="11"/>
-                <ComboBoxItem Content="12" IsSelected="True"/>
+                <ComboBoxItem Content="12"/>
                 <ComboBoxItem Content="13"/>
                 <ComboBoxItem Content="14"/>
                 <ComboBoxItem Content="15"/>
+                <ComboBoxItem Content="16"/>
+                <ComboBoxItem Content="17"/>
+                <ComboBoxItem Content="18"/>
+                <ComboBoxItem Content="19"/>
+                <ComboBoxItem Content="20"/>
+                <ComboBoxItem Content="21"/>
             </ComboBox>
         </Grid>
 
