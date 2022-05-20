@@ -197,5 +197,24 @@ namespace BlocNote
                 }
             }
         }
+
+
+        public void OpenWith(RichTextBox richTextBox, Label labelTitre)
+        {
+            if (Chemin != "")
+            {
+                TextRange textRange = new(richTextBox.Document.ContentStart, richTextBox.Document.ContentEnd);
+                if (Chemin != "" || !textRange.IsEmpty)
+                {
+                    Nouveau(richTextBox);
+                }
+                OpenFileDialog openFileDialog = new();
+                openFileDialog.FileName = Chemin;
+                var sr = new StreamReader(openFileDialog.FileName);
+                richTextBox.Document.Blocks.Add(new Paragraph(new Run(sr.ReadToEnd())));
+                Labell.Content = $"{openFileDialog.SafeFileName} - Bloc-notes";
+            }
+            
+        }
     }
 }
