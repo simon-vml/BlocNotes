@@ -11,7 +11,7 @@
         ResizeMode="NoResize"
         AllowsTransparency="True"
         Background="Transparent"
-        Icon="/warning.png"
+        Icon="pictures/warning.png"
         WindowStartupLocation="CenterScreen"
         Topmost="True">
 
@@ -25,7 +25,7 @@
 
         <Border Grid.Row="0" Background="#262626" CornerRadius="15,15,0,0" MouseDown="Border_MouseDown">
             <Grid>
-                <Image Margin="3,4,266,4" Source="/warning.png" Height="23"/>
+                <Image Margin="3,4,266,4" Source="pictures/warning.png" Height="23"/>
                 <Label Content="Document non enregistré" HorizontalAlignment="Left" Margin="33,0,0,0" VerticalAlignment="Center" Width="156" Foreground="White" FontFamily="Borg9"/>
             </Grid>
         </Border>
@@ -43,6 +43,6 @@
                 <Button Content="Annuler" Margin="0,4,25,4" Width="66.66" HorizontalAlignment="Right" Background="#303030" Foreground="White" FontFamily="Borg9" Click="Button_Click_2"/>
             </Grid>
         </Border>
-        <Image Margin="0,0,10,0" VerticalAlignment="Center" Source="/cross.png" HorizontalAlignment="Right" Height="23" Cursor="Hand" MouseUp="Image_MouseUp"/>
+        <Image Margin="0,0,10,0" VerticalAlignment="Center" Source="pictures/cross.png" HorizontalAlignment="Right" Height="23" Cursor="Hand" MouseUp="Image_MouseUp"/>
     </Grid>
 </Window>

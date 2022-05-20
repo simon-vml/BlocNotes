@@ -75,7 +75,7 @@ namespace BlocNote
         {
             txtBoxCouleur1.Text = Couleur1;
             txtBoxCouleur2.Text = Couleur2;
-
+            txtBoxTaille.Text = Taille.ToString();
 
             int compteurComboBoxPolice = 1;
             foreach (ComboBoxItem comboBoxItem in comboPolice.Items)
@@ -87,25 +87,11 @@ namespace BlocNote
                 compteurComboBoxPolice++;
             }
             comboPolice.SelectedIndex = compteurComboBoxPolice - 1;
-
-
-            int compteurComboBoxTaille = 0;
-            foreach (ComboBoxItem comboBoxItem in comboTaille.Items)
-            {
-                if (comboBoxItem.Content.ToString() == Taille.ToString())
-                {
-                    break;
-                }
-                compteurComboBoxTaille++;
-            }
-            comboTaille.SelectedIndex = compteurComboBoxTaille;
         }
 
         private void LoadAllPresetsInComboBox()
         {
-            string combinedPath = System.IO.Path.Combine(Directory.GetCurrentDirectory(), @"../../../presets.txt");
-            string realPath = Path.GetFullPath(combinedPath);
-            List<string> allLinesText = File.ReadAllLines(realPath).ToList();
+            List<string> allLinesText = File.ReadAllLines(@"data/presets.txt").ToList();
             foreach (string line in allLinesText)
             {
                 string[] tempList = line.Split("#");
@@ -136,12 +122,6 @@ namespace BlocNote
         private void comboPolice_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Police = (e.AddedItems[0] as ComboBoxItem).Content as string; ;
-        }
-
-        private void comboTaille_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            string tailleEnString = (e.AddedItems[0] as ComboBoxItem).Content as string;
-            Taille = Int32.Parse(tailleEnString);
         }
 
         private void txtBoxCouleur1_TextChanged(object sender, TextChangedEventArgs e)
@@ -190,6 +170,7 @@ namespace BlocNote
 
             txtBoxCouleur1.Text = Couleur1;
             txtBoxCouleur2.Text = Couleur2;
+            txtBoxTaille.Text = Taille.ToString();
 
             int compteurPolice = 0;
             foreach (ComboBoxItem item in comboPolice.Items)
@@ -202,17 +183,6 @@ namespace BlocNote
             }
             comboPolice.SelectedIndex = compteurPolice;
 
-
-            int compteurTaille = 0;
-            foreach (ComboBoxItem item in comboTaille.Items)
-            {
-                if (item.Content.ToString() == Taille.ToString())
-                {
-                    break;
-                }
-                compteurTaille++;
-            }
-            comboTaille.SelectedIndex = compteurTaille;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -238,6 +208,15 @@ namespace BlocNote
             {
                 Close();
             }
+        }
+
+        private void txtBoxTaille_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                Taille = Int32.Parse(txtBoxTaille.Text);
+            }
+            catch { }
         }
     }
 }

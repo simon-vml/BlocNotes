@@ -9,28 +9,27 @@
 
 	
 	<ItemGroup>
-        <Content Include="pictures\**" CopyToPublishDirectory="PreserveNewest" />
+        <Content Include="pictures\**" />
         <Content Include="fonts\**" />
+		<Content Include="data\**" />
 	</ItemGroup>
 
 	
 	<ItemGroup>
-	  <None Remove="blocnotes.png" />
-	  <None Remove="cross.png" />
-	  <None Remove="horizontal.png" />
-	  <None Remove="square.png" />
-	  <None Remove="warning.png" />
+	  <None Remove="pictures\blocnotes.png" />
+	  <None Remove="pictures\cross.png" />
+	  <None Remove="pictures\horizontal.png" />
+	  <None Remove="pictures\square.png" />
+	  <None Remove="pictures\warning.png" />
 	</ItemGroup>
 
 
 	<ItemGroup>
-	  <Resource Include="blocnotes.png" />
-	  <Resource Include="cross.png" />
-	  <Resource Include="horizontal.png" />
-	  <Resource Include="pictures/blocnotes.png" />
-	  <Resource Include="pictures/cross.png" />
-	  <Resource Include="square.png" />
-	  <Resource Include="warning.png" />
+	  <Resource Include="pictures\horizontal.png" />
+	  <Resource Include="pictures\blocnotes.png" />
+	  <Resource Include="pictures\cross.png" />
+	  <Resource Include="pictures\square.png" />
+	  <Resource Include="pictures\warning.png" />
 	</ItemGroup>
 
 

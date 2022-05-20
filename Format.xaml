@@ -12,7 +12,8 @@
         Background="Transparent"
         WindowStyle="None"
         ResizeMode="NoResize"
-        WindowStartupLocation="CenterScreen" KeyDown="Window_KeyDown">
+        WindowStartupLocation="CenterScreen" KeyDown="Window_KeyDown"
+        Icon="pictures/blocnotes.png">
 
 
     <Grid>
@@ -47,21 +48,7 @@
 
         <Grid Grid.Row="1" Grid.Column="1" Background="#303030">
             <Label Content="Taille:" HorizontalAlignment="Center" Margin="0,17,0,0" VerticalAlignment="Top" Width="120" Foreground="White"/>
-            <ComboBox x:Name="comboTaille" HorizontalAlignment="Center" Margin="0,42,0,0" VerticalAlignment="Top" Width="120" Height="22" SelectionChanged="comboTaille_SelectionChanged">
-                <ComboBoxItem Content="9"/>
-                <ComboBoxItem Content="10"/>
-                <ComboBoxItem Content="11"/>
-                <ComboBoxItem Content="12"/>
-                <ComboBoxItem Content="13"/>
-                <ComboBoxItem Content="14"/>
-                <ComboBoxItem Content="15"/>
-                <ComboBoxItem Content="16"/>
-                <ComboBoxItem Content="17"/>
-                <ComboBoxItem Content="18"/>
-                <ComboBoxItem Content="19"/>
-                <ComboBoxItem Content="20"/>
-                <ComboBoxItem Content="21"/>
-            </ComboBox>
+            <TextBox x:Name="txtBoxTaille" Text="" Margin="15,42,15,21" Width="120" Height="22" TextChanged="txtBoxTaille_TextChanged" />
         </Grid>
 
 
@@ -105,6 +92,6 @@
         </Border>
 
 
-        <Image x:Name="closeWindow" Grid.Column="1" HorizontalAlignment="Left" Height="28" Margin="110,3,0,0" VerticalAlignment="Top" Width="28" Source="/cross.png" Cursor="Hand" MouseUp="closeWindow_MouseUp" Grid.RowSpan="2"/>
+        <Image x:Name="closeWindow" Grid.Column="1" HorizontalAlignment="Left" Height="28" Margin="110,3,0,0" VerticalAlignment="Top" Width="28" Source="pictures/cross.png" Cursor="Hand" MouseUp="closeWindow_MouseUp" Grid.RowSpan="2"/>
     </Grid>
 </Window>
