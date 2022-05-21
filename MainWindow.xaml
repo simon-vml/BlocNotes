@@ -13,9 +13,9 @@
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
-        Icon="pictures/blocnotes.png"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="CanResizeWithGrip">
+        ResizeMode="CanResizeWithGrip"
+        Icon="pictures/blocnotes.png">
 
 
     <Grid x:Name="mainGrid">

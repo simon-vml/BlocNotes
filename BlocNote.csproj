@@ -16,6 +16,7 @@
 
 	
 	<ItemGroup>
+	  <None Remove="blocnotes.png" />
 	  <None Remove="pictures\blocnotes.png" />
 	  <None Remove="pictures\cross.png" />
 	  <None Remove="pictures\horizontal.png" />
@@ -25,6 +26,7 @@
 
 
 	<ItemGroup>
+	  <Resource Include="blocnotes.png" />
 	  <Resource Include="pictures\horizontal.png" />
 	  <Resource Include="pictures\blocnotes.png" />
 	  <Resource Include="pictures\cross.png" />
