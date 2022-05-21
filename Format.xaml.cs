@@ -87,6 +87,7 @@ namespace BlocNote
                 compteurComboBoxPolice++;
             }
             comboPolice.SelectedIndex = compteurComboBoxPolice - 1;
+            
         }
 
         private void LoadAllPresetsInComboBox()

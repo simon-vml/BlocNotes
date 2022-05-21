@@ -29,20 +29,21 @@ namespace BlocNote
 
         private bool _isFullScreen = false;
 
-        private string _police = "Borg9";
-        private int _taille = 18;
-        private string _couleur1 = "#262626";
-        private string _couleur2 = "#383838";
-
+        private string _police;
+        private int _taille;
+        private string _couleur1;
+        private string _couleur2;
 
 
         public MainWindow()
         {
             InitializeComponent();
             fichier.Labell = windowTitle;
-            SetupWindow();
+            //SetupWindow();
+            LoadLastData();
         }
         
+        /*
         private void SetupWindow()
         {
             var brush1 = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, (byte)26, (byte)26, (byte)26));
@@ -54,11 +55,70 @@ namespace BlocNote
             borderRichTextBox.Background = brush2;
 
 
-            FontFamily fontFamily = new FontFamily(_police);
+            FontFamily fontFamily = new FontFamily("Borg9");
             richTextBox.FontFamily = fontFamily;
 
 
+            richTextBox.FontSize = 18;
+        }
+        */
+
+
+        private void LoadLastData()
+        {
+            StreamReader sr = new StreamReader("data/lastPreset.txt");
+            string lastPreset = sr.ReadLine();
+            sr.Close();
+            string[] lastPresetArray = lastPreset.Split('#');
+
+
+            _police = lastPresetArray[0];
+            _taille = Int32.Parse(lastPresetArray[1]);
+            _couleur1 = $"#{lastPresetArray[2]}";
+            _couleur2 = $"#{lastPresetArray[3]}";
+
+
             richTextBox.FontSize = _taille;
+            runRichTextBox.FontFamily = new FontFamily(_police);
+
+            if (_couleur1.Length == 4)
+            {
+                int R = _couleur1[1];
+                int G = _couleur1[2];
+                int B = _couleur1[3];
+                var brush = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, (byte)R, (byte)G, (byte)B));
+                borderBarreDeTitre.Background = brush;
+                gridRow1.Background = brush;
+                menuGlobal.Background = brush;
+            }
+            else if (_couleur1.Length == 7)
+            {
+                int R = Int32.Parse($"{_couleur1[1]}{_couleur1[2]}");
+                int G = Int32.Parse($"{_couleur1[3]}{_couleur1[4]}");
+                int B = Int32.Parse($"{_couleur1[5]}{_couleur1[6]}");
+                var brush = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, (byte)R, (byte)G, (byte)B));
+                borderBarreDeTitre.Background = brush;
+                gridRow1.Background = brush;
+                menuGlobal.Background = brush;
+            }
+
+
+            if (_couleur2.Length == 4)
+            {
+                int R = _couleur2[1];
+                int G = _couleur2[2];
+                int B = _couleur2[3];
+                var brush = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, (byte)R, (byte)G, (byte)B));
+                borderRichTextBox.Background = brush;
+            }
+            else if (_couleur2.Length == 7)
+            {
+                int R = Int32.Parse($"{_couleur2[1]}{_couleur2[2]}");
+                int G = Int32.Parse($"{_couleur2[3]}{_couleur2[4]}");
+                int B = Int32.Parse($"{_couleur2[5]}{_couleur2[6]}");
+                var brush = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, (byte)R, (byte)G, (byte)B));
+                borderRichTextBox.Background = brush;
+            }
         }
 
 
@@ -244,7 +304,7 @@ namespace BlocNote
 
         private void menuItemFormat_Click(object sender, RoutedEventArgs e)
         {
-            Format windowFormat = new(_police, _taille, _couleur1, _couleur2);
+            Format windowFormat = new( _police, _taille, _couleur1, _couleur2);
             _police = windowFormat.Police;
             _taille = windowFormat.Taille;
             _couleur1 = windowFormat.Couleur1;
@@ -291,6 +351,14 @@ namespace BlocNote
                 var brush = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, (byte)R, (byte)G, (byte)B));
                 borderRichTextBox.Background = brush;
             }
+
+            _couleur1 = _couleur1.Remove(0, 1);
+            _couleur2 = _couleur2.Remove(0, 1);
+
+            StreamWriter sw = new StreamWriter("data/lastPreset.txt");
+            string line = $@"{_police}#{_taille}#{_couleur1}#{_couleur2}";
+            sw.Write(line);
+            sw.Close();
         }
     }
 }
