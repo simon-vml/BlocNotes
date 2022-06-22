@@ -34,6 +34,9 @@ namespace BlocNote
         private string _couleur1;
         private string _couleur2;
 
+        private string _tempoCouleur1;
+        private string _tempoCouleur2;
+
 
         public MainWindow()
         {
@@ -62,6 +65,14 @@ namespace BlocNote
             richTextBox.FontSize = 18;
         }
         */
+        private void OpenWith()
+        {
+            string[] cmdLine = Environment.GetCommandLineArgs();
+            if (cmdLine.Length == 2)
+            {
+                fichier.OpenWith(richTextBox, windowTitle, cmdLine[1]);
+            }
+        }
 
 
         private void LoadLastData()
@@ -93,10 +104,9 @@ namespace BlocNote
             }
             else if (_couleur1.Length == 7)
             {
-                int R = Int32.Parse($"{_couleur1[1]}{_couleur1[2]}");
-                int G = Int32.Parse($"{_couleur1[3]}{_couleur1[4]}");
-                int B = Int32.Parse($"{_couleur1[5]}{_couleur1[6]}");
-                var brush = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, (byte)R, (byte)G, (byte)B));
+                System.Drawing.Color c = ColorTranslator.FromHtml(_couleur1);
+                System.Windows.Media.Color color = System.Windows.Media.Color.FromRgb(c.R, c.G, c.B);
+                var brush = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, (byte)c.R, (byte)c.G, (byte)c.B));
                 borderBarreDeTitre.Background = brush;
                 gridRow1.Background = brush;
                 menuGlobal.Background = brush;
@@ -113,10 +123,9 @@ namespace BlocNote
             }
             else if (_couleur2.Length == 7)
             {
-                int R = Int32.Parse($"{_couleur2[1]}{_couleur2[2]}");
-                int G = Int32.Parse($"{_couleur2[3]}{_couleur2[4]}");
-                int B = Int32.Parse($"{_couleur2[5]}{_couleur2[6]}");
-                var brush = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, (byte)R, (byte)G, (byte)B));
+                System.Drawing.Color c = ColorTranslator.FromHtml(_couleur2);
+                System.Windows.Media.Color color = System.Windows.Media.Color.FromRgb(c.R, c.G, c.B);
+                var brush = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, (byte)c.R, (byte)c.G, (byte)c.B));
                 borderRichTextBox.Background = brush;
             }
         }
@@ -304,11 +313,12 @@ namespace BlocNote
 
         private void menuItemFormat_Click(object sender, RoutedEventArgs e)
         {
-            Format windowFormat = new( _police, _taille, _couleur1, _couleur2);
+            Format windowFormat = new(_police, _taille, _couleur1, _couleur2);
             _police = windowFormat.Police;
             _taille = windowFormat.Taille;
             _couleur1 = windowFormat.Couleur1;
             _couleur2 = windowFormat.Couleur2;
+
 
             richTextBox.FontSize = _taille;
             runRichTextBox.FontFamily = new FontFamily(_police);
@@ -325,10 +335,9 @@ namespace BlocNote
             }
             else if (windowFormat.Couleur1.Length == 7)
             {
-                int R = Int32.Parse($"{windowFormat.Couleur1[1]}{windowFormat.Couleur1[2]}");
-                int G = Int32.Parse($"{windowFormat.Couleur1[3]}{windowFormat.Couleur1[4]}");
-                int B = Int32.Parse($"{windowFormat.Couleur1[5]}{windowFormat.Couleur1[6]}");
-                var brush = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, (byte)R, (byte)G, (byte)B));
+                System.Drawing.Color c = ColorTranslator.FromHtml(windowFormat.Couleur1);
+                System.Windows.Media.Color color = System.Windows.Media.Color.FromRgb(c.R, c.G, c.B);
+                var brush = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, (byte)c.R, (byte)c.G, (byte)c.B));
                 borderBarreDeTitre.Background = brush;
                 gridRow1.Background = brush;
                 menuGlobal.Background= brush;
@@ -345,18 +354,24 @@ namespace BlocNote
             }
             else if (windowFormat.Couleur2.Length == 7)
             {
-                int R = Int32.Parse($"{windowFormat.Couleur2[1]}{windowFormat.Couleur2[2]}");
-                int G = Int32.Parse($"{windowFormat.Couleur2[3]}{windowFormat.Couleur2[4]}");
-                int B = Int32.Parse($"{windowFormat.Couleur2[5]}{windowFormat.Couleur2[6]}");
-                var brush = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, (byte)R, (byte)G, (byte)B));
+                System.Drawing.Color c = ColorTranslator.FromHtml(windowFormat.Couleur2);
+                System.Windows.Media.Color color = System.Windows.Media.Color.FromRgb(c.R, c.G, c.B);
+                var brush = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, (byte)c.R, (byte)c.G, (byte)c.B));
                 borderRichTextBox.Background = brush;
             }
 
-            _couleur1 = _couleur1.Remove(0, 1);
-            _couleur2 = _couleur2.Remove(0, 1);
+            if (_couleur1[0] == '#')
+            {
+                _tempoCouleur1 = _couleur1.Remove(0, 1);
+            }
+            if (_couleur2[0] == '#')
+            {
+                _tempoCouleur2 = _couleur2.Remove(0, 1);
+            }
+
 
             StreamWriter sw = new StreamWriter("data/lastPreset.txt");
-            string line = $@"{_police}#{_taille}#{_couleur1}#{_couleur2}";
+            string line = $@"{_police}#{_taille}#{_tempoCouleur1}#{_tempoCouleur2}";
             sw.Write(line);
             sw.Close();
         }

@@ -5,25 +5,71 @@ VisualStudioVersion = 17.1.32319.34
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlocNote", "BlocNote.csproj", "{C8FB2B6D-8AEC-4D25-A881-F03EEABED09B}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "BlocNotesSetup", "..\BlocNotesSetup\BlocNotesSetup.vdproj", "{994EF0E3-D714-4579-BAB1-6DAC278344FD}"
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "Setup", "..\Setup\Setup.wixproj", "{B1980A87-3746-4F42-8E95-02488DFBA03D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|Default = Debug|Default
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|Default = Release|Default
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{C8FB2B6D-8AEC-4D25-A881-F03EEABED09B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C8FB2B6D-8AEC-4D25-A881-F03EEABED09B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8FB2B6D-8AEC-4D25-A881-F03EEABED09B}.Debug|Default.ActiveCfg = Debug|Any CPU
+		{C8FB2B6D-8AEC-4D25-A881-F03EEABED09B}.Debug|Default.Build.0 = Debug|Any CPU
+		{C8FB2B6D-8AEC-4D25-A881-F03EEABED09B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C8FB2B6D-8AEC-4D25-A881-F03EEABED09B}.Debug|x86.Build.0 = Debug|Any CPU
 		{C8FB2B6D-8AEC-4D25-A881-F03EEABED09B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C8FB2B6D-8AEC-4D25-A881-F03EEABED09B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{994EF0E3-D714-4579-BAB1-6DAC278344FD}.Debug|Any CPU.ActiveCfg = Debug
-		{994EF0E3-D714-4579-BAB1-6DAC278344FD}.Release|Any CPU.ActiveCfg = Release
+		{C8FB2B6D-8AEC-4D25-A881-F03EEABED09B}.Release|Default.ActiveCfg = Release|Any CPU
+		{C8FB2B6D-8AEC-4D25-A881-F03EEABED09B}.Release|Default.Build.0 = Release|Any CPU
+		{C8FB2B6D-8AEC-4D25-A881-F03EEABED09B}.Release|x86.ActiveCfg = Release|Any CPU
+		{C8FB2B6D-8AEC-4D25-A881-F03EEABED09B}.Release|x86.Build.0 = Release|Any CPU
+		{B1980A87-3746-4F42-8E95-02488DFBA03D}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{B1980A87-3746-4F42-8E95-02488DFBA03D}.Debug|Any CPU.Build.0 = Debug|x86
+		{B1980A87-3746-4F42-8E95-02488DFBA03D}.Debug|Default.ActiveCfg = Debug|x86
+		{B1980A87-3746-4F42-8E95-02488DFBA03D}.Debug|Default.Build.0 = Debug|x86
+		{B1980A87-3746-4F42-8E95-02488DFBA03D}.Debug|x86.ActiveCfg = Debug|x86
+		{B1980A87-3746-4F42-8E95-02488DFBA03D}.Debug|x86.Build.0 = Debug|x86
+		{B1980A87-3746-4F42-8E95-02488DFBA03D}.Release|Any CPU.ActiveCfg = Release|x86
+		{B1980A87-3746-4F42-8E95-02488DFBA03D}.Release|Any CPU.Build.0 = Release|x86
+		{B1980A87-3746-4F42-8E95-02488DFBA03D}.Release|Default.ActiveCfg = Release|x86
+		{B1980A87-3746-4F42-8E95-02488DFBA03D}.Release|Default.Build.0 = Release|x86
+		{B1980A87-3746-4F42-8E95-02488DFBA03D}.Release|x86.ActiveCfg = Release|x86
+		{B1980A87-3746-4F42-8E95-02488DFBA03D}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D94EE2BB-F6EB-4261-A902-F2156C5BCADC}
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Default = Debug|Default
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Default = Release|Default
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Default = Debug|Default
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Default = Release|Default
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Default = Debug|Default
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Default = Release|Default
+		Release|x86 = Release|x86
 	EndGlobalSection
 EndGlobal
